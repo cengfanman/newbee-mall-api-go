@@ -7,7 +7,7 @@ FROM golang:1.19-alpine AS build
 
 WORKDIR /mallApi
 
-COPY * ./
+COPY . ./
 RUN  go mod tidy
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o /mall-api
