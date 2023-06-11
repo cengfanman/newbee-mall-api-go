@@ -10,7 +10,7 @@ WORKDIR /mallApi
 COPY . ./
 RUN  go mod tidy
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /mall-api
+RUN CGO_ENABLED=0 GOOS=linux go build -o /mall-api .
 
 ##
 ## Deploy
@@ -20,6 +20,7 @@ FROM scratch
 WORKDIR /
 
 COPY --from=build /mall-api /mall-api
+COPY config.yaml config.yaml
 
 EXPOSE 8888
 
